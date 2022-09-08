@@ -1,5 +1,4 @@
-from turtle import update
-import pygame
+
 from dino_runner.components.obstacle import Obstacle
 import random
 
