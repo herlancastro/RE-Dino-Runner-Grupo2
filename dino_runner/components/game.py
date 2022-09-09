@@ -12,8 +12,7 @@ from dino_runner.components.text_utils import get_score_element
 class Game:
     def __init__(self):
         pygame.init()
-        # pygame.mixer.init()
-
+        pygame.mixer.init()
         pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -35,8 +34,8 @@ class Game:
     def run(self):
         # self.saltar()
         # Game loop: events - update - draw
-        # sonido_fondo = pygame.mixer.Sound("Sound/principal.wav")
-        # sonido_fondo.play()
+        sonido_fondo = pygame.mixer.Sound("dino_runner/Sound/principal.wav")
+        pygame.mixer.Sound.play(sonido_fondo)
         self.create_comment()
         self.playing = True
         while self.playing:

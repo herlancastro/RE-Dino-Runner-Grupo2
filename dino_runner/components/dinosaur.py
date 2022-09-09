@@ -45,6 +45,8 @@ class Dinosaur(Sprite):
             self.duck()
 
         if user_input[pygame.K_UP] and not self.dino_jump:
+            salto = pygame.mixer.Sound("dino_runner/Sound/jump.mp3")
+            pygame.mixer.Sound.play(salto)
             self.dino_run = False
             self.dino_duck = False
             self.dino_jump = True
@@ -80,6 +82,7 @@ class Dinosaur(Sprite):
             self.dino_rect.y = self.Y_POS
             self.dino_jump = False
             self.jump_vel = self.JUMP_VEL
+        
 
     def duck(self):
         self.image = self.duck_img[self.type][0]
