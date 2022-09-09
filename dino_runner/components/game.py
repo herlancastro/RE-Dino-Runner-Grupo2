@@ -3,6 +3,7 @@ import pygame
 from dino_runner.components.obstacle_manager import ObstacleManager
 from dino_runner.components.player_hearts.player_heart_manager import PlayerHeartManager
 from dino_runner.components.power_up.power_up_manager import PowerUpManager
+from dino_runner.components.power_hammer.power_hammer_manager import PowerHammerManager
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, JUMPING, DEFAULT_TYPE
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components import text_utils
@@ -27,6 +28,8 @@ class Game:
         #self.is_jumping = False
         self.player_heart_manager = PlayerHeartManager()
         self.power_up_manager = PowerUpManager()
+
+        self.power_hammer_manager = PowerHammerManager()
         self.points = 0
         self.death_count =0
         self.running = True
@@ -63,6 +66,7 @@ class Game:
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
         self.power_up_manager.update(self.points,self.game_speed,self.player)
+        self.power_hammer_manager.update(self.points,self.game_speed,self.player)
         self.obstacle_manager.update(self)
 
     def draw(self):
@@ -73,6 +77,8 @@ class Game:
         self.obstacle_manager.draw(self.screen)
         self.player_heart_manager.draw(self.screen)
         self.power_up_manager.draw(self.screen)
+        self.power_hammer_manager.draw(self.screen)
+
         self.score()
         self.running = True
         self.player.check_lives()
@@ -102,11 +108,6 @@ class Game:
         self.print_menu_elements(death_count)
         pygame.display.update()
         self.headle_key_events_on_menu()
-        if death_count == 1:
-            white_color = (0,0,255)
-            self.screen.fill(white_color)
-            pygame.display.update()
-            print("DEATH: ",death_count)
 
     def print_menu_elements(self,death_count=0):
         half_screen_hegth = SCREEN_HEIGHT//2
