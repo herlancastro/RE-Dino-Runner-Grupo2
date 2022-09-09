@@ -5,8 +5,9 @@ from dino_runner.components.cactus import Cactus
 class PlayerHeartManager:
     def __init__(self):
         self.heart_count = 5
+
     def reduce_heart_count(self):
-        self.obstacles.append(Cactus(SMALL_CACTUS))
+        self.heart_count -= 1
 
     def draw(self, screen):
         x_position = 10
