@@ -1,6 +1,4 @@
 from dino_runner.components.player_hearts.heart import Heart
-from dino_runner.utils.constants import SMALL_CACTUS
-from dino_runner.components.cactus import Cactus
 
 class PlayerHeartManager:
     def __init__(self):

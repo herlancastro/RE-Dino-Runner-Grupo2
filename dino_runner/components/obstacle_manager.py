@@ -5,7 +5,6 @@ from dino_runner.components.cactus import Cactus
 from dino_runner.components.pajaro import Pajaro
 from dino_runner.utils.constants import SMALL_CACTUS
 from dino_runner.utils.constants import BIRD
-from dino_runner.components.player_hearts import player_heart_manager
 
 
 class ObstacleManager:
@@ -16,7 +15,7 @@ class ObstacleManager:
     def update(self, game):
         if len(self.obstacles) == 0:
             self.obstacles.append(Cactus(SMALL_CACTUS))
-            #self.obstacles.append(Pajaro(BIRD))
+            self.obstacles.append(Pajaro(BIRD))
 
         for obstacle in self.obstacles:
             obstacle.update(game.game_speed, self.obstacles)
@@ -25,7 +24,7 @@ class ObstacleManager:
                     game.player_heart_manager.reduce_heart_count()
                     if game.player_heart_manager.heart_count > 0:
                         game.player.has_lives = True
-                        self.obstacles.pop()
+                        self.obstacles.pop(0)
                         start_transition_times = pygame.time.get_ticks()
                         game.player.lives_transition_time = start_transition_times + 1000
                     else:
@@ -38,7 +37,7 @@ class ObstacleManager:
                         else:
                             self.obstacles.remove(obstacle)
                 elif game.player.shield:
-                    self.obstacles.pop()
+                    self.obstacles.pop(0)
 
     def draw(self, screen):
         for obstacle in self.obstacles:
