@@ -102,13 +102,19 @@ class Game:
         self.print_menu_elements(death_count)
         pygame.display.update()
         self.headle_key_events_on_menu()
-    
+        if death_count == 1:
+            white_color = (0,0,255)
+            self.screen.fill(white_color)
+            pygame.display.update()
+            print("DEATH: ",death_count)
+
     def print_menu_elements(self,death_count=0):
         half_screen_hegth = SCREEN_HEIGHT//2
         if death_count == 0:
             text, text_rect = text_utils.get_centered_message("Press my Key to Start")
             self.screen.blit(text,text_rect)
         elif death_count > 0:
+
             text, text_rect = text_utils.get_centered_message("Press my Key to Start")
             score, score_rect = text_utils.get_centered_message("Your Score "+ str(self.points),height = half_screen_hegth +50)
             self.screen.blit(text,text_rect)

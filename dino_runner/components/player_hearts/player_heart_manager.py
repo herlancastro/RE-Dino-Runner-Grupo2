@@ -12,8 +12,9 @@ class PlayerHeartManager:
             sonido_muerte = pygame.mixer.Sound("dino_runner/Sound/dark.mp3")
             pygame.mixer.Sound.play(sonido_muerte)
         if self.heart_count == 0:
-            
             pygame.mixer.pause()
+            sonido_muerte = pygame.mixer.Sound("dino_runner/Sound/muerte.mp3")
+            pygame.mixer.Sound.play(sonido_muerte)
 
             
 

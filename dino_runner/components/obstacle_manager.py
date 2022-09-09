@@ -27,6 +27,10 @@ class ObstacleManager:
                         self.obstacles.pop(0)
                         start_transition_times = pygame.time.get_ticks()
                         game.player.lives_transition_time = start_transition_times + 1000
+                        if game.player_heart_manager.heart_count == 1:
+                            white_color2 = (207, 210, 207)
+                            game.screen.fill(white_color2)
+                            pygame.display.update()
                     else:
                         #self.obstacles.remove(obstacle)
                         if not game.player.shield:
